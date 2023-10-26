@@ -10,18 +10,17 @@ const postSchema = new mongoose.Schema({
         required: true
     },
     Tags:{
-        type: String, Array,
+        type: [String],
         required: true
     },
     uid:{
-        type: String,
+        type: [String],
         required: true
     },
     comments:{
-        type: String, Array,
-        required: true
+        type: [String],
+        default: []
     },
-    
 });
 
 const Post = mongoose.model("Post", postSchema);
