@@ -1,0 +1,18 @@
+.AskQuestion{
+  margin-top: 7vh;
+  margin-bottom: 10vh;
+  
+}
+.createpost{
+  margin-left: 3vh;
+  margin-right: 3vh;
+}
+#steps{
+  font-size: 0.9rem;
+}
+.bluecard{
+  background-color: aliceblue;
+}
+#whiteBg{
+  background-color: white;
+}
