@@ -1,10 +1,11 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const app = express()
 
-const PostModel = require('./models/post');
+const PostModel = require('./models/post.js');
 app.use(express.json());
+app.use(cors());
 
 
 mongoose.connect('mongodb+srv://ali:123@crud.psiju9w.mongodb.net/?retryWrites=true&w=majority',
@@ -13,20 +14,21 @@ mongoose.connect('mongodb+srv://ali:123@crud.psiju9w.mongodb.net/?retryWrites=tr
 }); 
 
 app.post('/insert', async (req, res)=>{
-    const Title = req.body.Title;
-    const desc = req.body.desc;
-    const Tags = req.body.Tags;
+    const title = req.body.title;
+    const body = req.body.body;
+    const tags = req.body.tags;
     const uid = req.body.uid;
 
-    console.log(Title, desc, Tags, uid);
+    console.log('Inserted',title, body, tags, uid);
 
-    const post = new PostModel({Title: Title, desc: desc, Tags: Tags, uid: uid});
+    const post = new PostModel({title: title, body: body, tags: tags, uid: uid});
     try{
         await post.save();
         res.send("inserted data");
     }
     catch(err){
         console.log(err);
+        res.status(500).send("Error inserting data");
     }
 });
  app.listen(3001, ()=>{
