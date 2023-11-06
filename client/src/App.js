@@ -4,6 +4,7 @@ import Createpost from './components/createpost';
 
 function App() {
   return (
+    
     <div className="container-fluid App">
         <Createpost />
     </div>

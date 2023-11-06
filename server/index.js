@@ -31,6 +31,20 @@ app.post('/insert', async (req, res)=>{
         res.status(500).send("Error inserting data");
     }
 });
- app.listen(3001, ()=>{
+
+app.get('/home', async (req, res)=>{
+    PostModel.find({}).exec()
+    .then(result => {
+      console.log(result);
+      res.send(result);
+    })
+    .catch(error => {
+      console.error(error);
+      res.send(err);
+    });
+});
+
+
+app.listen(3001, ()=>{
         console.log("Server is running on port 3001");
     });
