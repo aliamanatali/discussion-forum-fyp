@@ -44,8 +44,6 @@ function Createpost() {
       tags: tagsArray,
     };
 
-
-
     setTitle('');
     setBody('');
     setTags('');
