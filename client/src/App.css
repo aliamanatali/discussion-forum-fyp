@@ -45,13 +45,8 @@ header {
   box-shadow: 0 4px 8px rgba(32, 100, 146, 0.3); 
 }
 
-.ask-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-  background-color: #3498db;
-}
 
-.ask-button:disabled:hover {
+.ask-button:hover {
   background-color: #3498db;
 }
 

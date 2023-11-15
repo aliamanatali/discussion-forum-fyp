@@ -44,6 +44,19 @@ app.get('/home', async (req, res)=>{
     });
 });
 
+app.get('/post/:id', async (req, res)=>{
+    const id = req.params.id;
+    console.log(id + " is the id");
+    PostModel.findById(id).exec()
+    .then(result => {
+      console.log(result);
+      res.send(result);
+    })
+    .catch(error => {
+      console.error(error);
+      res.send(err);
+    });
+});
 
 app.listen(3001, ()=>{
         console.log("Server is running on port 3001");
