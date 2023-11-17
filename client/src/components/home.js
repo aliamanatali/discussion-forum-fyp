@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Axios from 'axios'
 import Question from './Question'
+import Header from './header'
 
 function Home() {
     const[postList, setPostList] = useState([]);
@@ -45,8 +46,7 @@ function Home() {
 
   return (
     <div>
-    <h1>Post List</h1>
-    <button className='btn btn-primary'>Create Question</button>
+      <Header />
     <div className="question-list">
     {postList?.map(question => (
       <Question key={question.id} {...question} />

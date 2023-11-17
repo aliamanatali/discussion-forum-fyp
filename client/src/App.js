@@ -1,18 +1,24 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import Header from './components/Header';
-import Home from './components/home';
-import QuestionList from './components/Questionlist';
-// import Createpost from './components/createpost';
+import "./App.css";
+import { React, BrowserRouter, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./components/home";
+import Header from "./components/header";
+import Createpost from "./components/createpost";
+import Post from "./components/Post";
 
 function App() {
   return (
-    <div className="container-fluid App">
-      {/* <Header /> */}
-      <main>
-        <Home />
-      </main>
-    </div>
+    <BrowserRouter>
+      <div className="container-fluid App">
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/ask" element={<Createpost />} />
+            <Route path="/question/:id" element={<Post />} />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
 

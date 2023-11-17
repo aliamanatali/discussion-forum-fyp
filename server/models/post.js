@@ -21,6 +21,14 @@ const postSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
+    votes:{
+        type: Number,
+        default: 0
+    },
+    time:{
+        type: Date,
+        default: Date.now()
+    }
 });
 
 const Post = mongoose.model("Post", postSchema);
