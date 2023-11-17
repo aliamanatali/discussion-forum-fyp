@@ -44,8 +44,8 @@ function Post() {
     
 
     return (
-        <div className='container border'>
-            <h3 className='mt-5'>{post.title}</h3>
+        <div className='container border mt-3 rounded pb-3'>
+            <h3 className='mt-3'>{post.title}</h3>
             <hr></hr>
             <p className='mt-3'>{post.body}</p>
             <b>Tags:</b>
@@ -55,7 +55,7 @@ function Post() {
                 ))
             }</p>
             <b>Answers:</b>
-            <p className="comments">{
+            <p className="comments border rounded p-2">{
                 post.comments?.map((comment) => (
                     <p>{comment}</p>
                 ))
@@ -71,7 +71,7 @@ function Post() {
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}>
                 </input>
-                <button className="btn btn-primary mt-5" type="Submit" value="Submit">Post Your Answer</button>
+                <button className="btn btn-primary mt-5" type="Submit" value="Submit"><small>Post Your Answer</small></button>
             </form>
         </div>
     )
