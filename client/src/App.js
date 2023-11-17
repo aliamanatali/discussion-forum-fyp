@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/home";
 import Header from "./components/header";
 import Createpost from "./components/createpost";
-import Post from "./components/Question";
+import Post from "./components/Post";
 
 function App() {
   return (

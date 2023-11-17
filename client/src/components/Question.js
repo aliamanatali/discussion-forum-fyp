@@ -12,7 +12,8 @@ const Question = ({ _id, title, body, votes, comments, views, tags }) => {
 
   const navigate = useNavigate();
 
-  const navigateToQuestion = (_id) => {
+  const navigateToQuestion = () => {
+    console.log(_id);
     navigate(`/question/${_id}`);
   };
 
@@ -23,9 +24,10 @@ const Question = ({ _id, title, body, votes, comments, views, tags }) => {
       <div className="question-votes">
         <div className="votes">{votes} Votes</div>
         <div className="answers">
-          {comments > 0 && <span>&#10004; </span>}
-          {comments} Answers
+        {comments.length > 0 && <span>&#10004; </span>}
+        {comments.length} Answers
         </div>
+
         <div className="views">{views} Views</div>
       </div>
       <div className="question-details">

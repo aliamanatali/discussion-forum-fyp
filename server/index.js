@@ -8,10 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 
-mongoose.connect('mongodb+srv://ali:123@crud.psiju9w.mongodb.net/?retryWrites=true&w=majority',
-{
-    useNewUrlParser: true,
-}); 
+
 
 app.post('/insert', async (req, res)=>{
     const title = req.body.title;
@@ -40,24 +37,69 @@ app.get('/home', async (req, res)=>{
     })
     .catch(error => {
       console.error(error);
-      res.send(err);
+      res.send(error);
     });
 });
 
-app.get('/post/:id', async (req, res)=>{
-    const id = req.params.id;
-    console.log(id + " is the id");
-    PostModel.findById(id).exec()
-    .then(result => {
-      console.log(result);
-      res.send(result);
-    })
-    .catch(error => {
-      console.error(error);
-      res.send(err);
-    });
+app.get('/post/:id', async (req, res) => {
+    try {
+        const Questionid = req.params.id;
+        console.log(Questionid + " is the id");
+
+        if (!mongoose.Types.ObjectId.isValid(Questionid)) {
+            res.status(400).send('Invalid ID');
+            return;
+        }
+
+        const result = await PostModel.findById(Questionid).exec();
+        console.log(result);
+        if (!result) {
+            res.status(404).send('Post not found');
+        } else {
+            res.send(result);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
 });
+
+app.post('/comments/:id', async (req, res) => {
+    try {
+        const Questionid = req.params.id;
+        console.log(Questionid + " is the id");
+
+        if (!mongoose.Types.ObjectId.isValid(Questionid)) {
+            res.status(400).send('Invalid ID');
+            return;
+        }
+
+        const result = await PostModel.findByIdAndUpdate(Questionid, req.body, { new: true }).exec();
+        console.log(result);
+        if (!result) {
+            res.status(404).send('Post not found');
+        } else {
+            res.send(result);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+});
+
+const run = async () => {
+    try {
+        await mongoose.connect('mongodb+srv://ali:123@crud.psiju9w.mongodb.net/?retryWrites=true&w=majority',
+        {
+            useNewUrlParser: true,
+            serverSelectionTimeoutMS: 30000,
+        }); 
+    } catch (error) {
+        console.log("The error is:" + error)
+    }
+}
 
 app.listen(3001, ()=>{
         console.log("Server is running on port 3001");
     });
+run()
